@@ -12,3 +12,6 @@ select = "0.6.0"
 urlencoding = "2.1.2"
 tokio = { version="1.28.2", features=["full"]}
 serde = "1.0.163"
+mail-send = "0.4.0"
+dotenv = "0.15.0"
+dotenv_codegen = "0.15.0"

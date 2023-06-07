@@ -1,5 +1,3 @@
-use std::fmt::format;
-
 use reqwest::{redirect::Policy, Client, Error, header::{HeaderMap, HeaderValue}};
 
 use self::filter::Filter;
