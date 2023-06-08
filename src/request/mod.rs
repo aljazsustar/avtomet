@@ -3,6 +3,7 @@ use reqwest::{redirect::Policy, Client, Error, header::{HeaderMap, HeaderValue}}
 use self::filter::Filter;
 
 pub mod filter;
+pub mod sort;
 
 #[derive(Debug, Clone, Copy)]
 pub enum RequestType {

@@ -72,12 +72,14 @@ pub struct Filter {
     pub presort: String,
     pub tipsort: String,
     pub stran: String,
+    pub subSORT: String,
+    pub subTIPSORT: String
 }
 
 impl Default for Filter {
     fn default() -> Self {
         Self {
-            znamka: String::from("Porsche"),
+            znamka: String::from("Audi"),
             model: String::from(""),
             model_id: String::from(""),
             tip: String::from("katerikoli tip"),
@@ -106,17 +108,17 @@ impl Default for Filter {
             motorvalji: String::from(""),
             lokacija: String::from("0"),
             sirina: String::from(""),
-            dolzina: String::from(""),
-            dolzina_min: String::from(""),
-            dolzina_max: String::from(""),
-            nosilnost_min: String::from(""),
-            nosilnost_max: String::from(""),
+            dolzina: String::from("0"),
+            dolzina_min: String::from("0"),
+            dolzina_max: String::from("100"),
+            nosilnost_min: String::from("0"),
+            nosilnost_max: String::from("999999"),
             lezisc: String::from(""),
-            presek: String::from(""),
-            premer: String::from(""),
-            col: String::from(""),
-            vijakov: String::from(""),
-            etoznaka: String::from(""),
+            presek: String::from("0"),
+            premer: String::from("0"),
+            col: String::from("0"),
+            vijakov: String::from("0"),
+            etoznaka: String::from("0"),
             vozilo: String::from(""),
             airbag: String::from(""),
             barva: String::from(""),
@@ -135,19 +137,21 @@ impl Default for Filter {
             pia_zero: String::from(""),
             pia_out: String::from(""),
             pslo: String::from(""),
-            akcija: String::from(""),
+            akcija: String::from("0"),
             paketgarancije: String::from(""),
-            broker: String::from(""),
-            prikazkategorije: String::from(""),
-            kategorija: String::from(""),
-            onlvid: String::from(""),
-            onlnak: String::from(""),
-            zaloga: String::from(""),
-            arhiv: String::from(""),
-            presort: String::from(""),
-            tipsort: String::from(""),
+            broker: String::from("0"),
+            prikazkategorije: String::from("0"),
+            kategorija: String::from("0"),
+            onlvid: String::from("0"),
+            onlnak: String::from("0"),
+            zaloga: String::from("10"),
+            arhiv: String::from("0"),
+            presort: String::from("3"),
+            tipsort: String::from("DESC"),
             stran: String::from(""),
-        }
+            subSORT: String::from("2"),
+            subTIPSORT: String::from("ASC")
+        }   
     }
 }
 
@@ -155,7 +159,7 @@ impl Serialize for Filter {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer {
-        let mut s = serializer.serialize_struct("Filter", 3)?;
+        let mut s = serializer.serialize_struct("Filter", 69)?;
         s.serialize_field("znamka", &self.znamka)?;
         s.serialize_field("model", &self.model)?;
         s.serialize_field("modelID", &self.model_id)?;
@@ -226,6 +230,8 @@ impl Serialize for Filter {
         s.serialize_field("presort", &self.presort)?;
         s.serialize_field("tipsort", &self.tipsort)?;
         s.serialize_field("stran", &self.stran)?;
+        s.serialize_field("subSORT", &self.subSORT)?;
+        s.serialize_field("subTIPSORT", &self.subTIPSORT)?;
         s.end()
     }
 }

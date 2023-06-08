@@ -1,4 +1,10 @@
-#[derive(Debug, Clone)]
+use serde::{
+    de::{self, Visitor},
+    ser::SerializeStruct,
+    Deserialize, Serialize,
+};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Oglas {
     pub naziv: String,
     pub znamka: String,
@@ -6,7 +12,7 @@ pub struct Oglas {
     pub cena: f32,
     pub kilometri: u32,
     pub prva_registracija: u32,
-    pub naslov: String
+    pub naslov: String,
 }
 
 impl Default for Oglas {
@@ -18,7 +24,7 @@ impl Default for Oglas {
             cena: Default::default(),
             kilometri: Default::default(),
             prva_registracija: Default::default(),
-            naslov: Default::default()
+            naslov: Default::default(),
         }
     }
 }
@@ -52,7 +58,7 @@ impl OglasBuilder {
 
     pub fn add_model(&mut self, model: String) -> &mut Self {
         self.oglas.model = model;
-         self
+        self
     }
 
     pub fn add_cena(&mut self, cena: f32) -> &mut Self {
